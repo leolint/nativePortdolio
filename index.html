@@ -16,9 +16,9 @@
                 Portfolio
             </div>
             <nav id="header_nav" class="header_nav">
-                <button id="home" class="header_nav-link">Home</button>
-                <button class="header_nav-link" id="contacts">Contacts</button>
-                <button id="projects" class="header_nav-link">Projects</button>
+                <button id="homeButton" class="header_nav-link">Home</button>
+                <button class="header_nav-link" id="contactsButton">Contacts</button>
+                <button id="projectsButton" class="header_nav-link">Projects</button>
                 <div id="dropdownMenu">
                     <ul>
                         <li><a onclick="closeMenu()" target="_blank"
@@ -108,6 +108,7 @@
         </div>
     </section>
     <section class="custom">
+        <span class="custom_span"></span>
         <div class="container">
             <div id="slider" class="slider">
                 <p id="count"></p>
@@ -117,7 +118,7 @@
                     <img id="item" src="/img/gulp.png" alt="">
                     <img id="item" src="/img/git.png" alt="">
                     <img id="item" src="/img/gulp.png" alt="">
-                    
+
                 </div>
                 <div class="slider-buttons_wrapper">
                     <button id="slider-prev" class="slider-prev">prev</button>
@@ -129,16 +130,25 @@
     <section class="feedback">
         <h2 class="feedback_title">Feedback</h2>
         <div class="container">
-            <div class="feedback_wrapper" id="feedback_wrapper">
-                <textarea name="" id="" cols="30" rows="10">
-
-                </textarea>
-                <button>Submit</button>
+            <div class="feedback_wrapper">
+                <div class="feedback_wrapper-text">
+                    If you prefer my portfolio you can send a message <br> to my LinkedIn , WorkUa <br> or Telegram 
+                </div>
+                <button id="feedbackButton" class="feedback_wrapper-button"><span id="secondSpan">Close</span> <span id="firstSpan">Show</span>  Contacts</button>
+                <div id="feedbackContactsWrapper" class="feedback_wrapper-contacts">
+                    <a class="feedback_wrapper-contacts--link" href="www.work.ua/resumes/7262655/">WorkUa</a>
+                    <a class="feedback_wrapper-contacts--link" href="https://www.linkedin.com/in/leonid-chernyshov/">LinkedIn</a>
+                    <a class="feedback_wrapper-contacts--link" href="">Telegram</a>
+                </div>
+            </div>
             </div>
         </div>
     </section>
+    <script src="/js/feedbackButton.js"></script>
+    <script src="/js/dropDownMenu.js"></script>
+    <script src="/js/scrolls.js"></script>
     <script src="/js/slider.js"></script>
-    <script src="/js/main.js"></script>
+    <script src="/js/asideMenu.js"></script>
 </body>
 
 </html>

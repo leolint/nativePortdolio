@@ -9,12 +9,10 @@ const item = document.getElementById('item');
 let width = item.offsetWidth * images.length;
 let itemWidth = item.offsetWidth;
 
-console.log(itemWidth);
 let count = 0;
 
 nextButton.onclick = function () {
     ++count
-    console.log(count);
     if (count >= images.length) {
         count = 0;
     }
@@ -22,7 +20,6 @@ nextButton.onclick = function () {
 }
 prevButton.onclick = function () {
     --count
-    console.log(count);
     if (count < 0) {
         count = images.length - 1;
     }
@@ -35,7 +32,3 @@ function roll () {
 
 
 
-
-
-console.log(width);
-console.log(images);

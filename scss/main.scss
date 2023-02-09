@@ -1,4 +1,16 @@
 @mixin br($br) {
+    @if $br ==xxxs {
+        @media (max-width: 320px) {
+            @content;
+        }
+    }
+
+    @if $br ==xxs {
+        @media (max-width: 375px) {
+            @content;
+        }
+    }
+
     @if $br ==xs {
         @media (max-width: 425px) {
             @content;
@@ -84,6 +96,20 @@ body {
         box-sizing: border-box;
         margin: 0 auto;
     }
+
+    @include br(xxs) {
+        max-width: 375px;
+        padding: 0 0px;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
+
+    @include br(xxxs) {
+        max-width: 320px;
+        padding: 0 0px;
+        box-sizing: border-box;
+        margin: 0 auto;
+    }
 }
 
 * {
@@ -99,10 +125,12 @@ body {
     color: white;
     position: fixed;
     z-index: 10;
+
     .borderColor {
         border-bottom: 2px aqua solid;
         transform: scale(1.2);
     }
+
     &_wrapper {
         display: flex;
         position: relative;
@@ -112,17 +140,28 @@ body {
         justify-content: space-between;
         align-items: center;
         animation: headerAnimation 1s linear;
-        animation-fill-mode:both;
+        animation-fill-mode: both;
+
         @include br(xs) {
-            align-items: center;  
+            align-items: center;
         }
 
         &-mobileButton {
             padding-bottom: 20px;
+            position: absolute;
+            right: 5%;
+            top: 30%;
             display: none;
+            z-index: 100;
+
             @include br(xs) {
                 display: block;
             }
+
+            @include br(xxxs) {
+                right: 1%;
+            }
+
             span {
                 display: block;
                 background-color: white;
@@ -140,8 +179,9 @@ body {
         padding: 5px;
         cursor: pointer;
         transition: 0.3s ease;
+
         @include br(xs) {
-            margin: 0 auto;   
+            margin: 0 auto;
         }
 
         &:hover {
@@ -155,15 +195,15 @@ body {
         display: flex;
         width: 50%;
         justify-content: space-around;
+
         @include br(xs) {
             flex-direction: column;
             background-color: black;
-            position: relative;
+            position: absolute;
             z-index: 10;
-            top: 150%;
-            right: -60%;
+            top: 80%;
+            right: -100%;
             transition: 0.3s ease;
-            padding: 10px;
         }
 
         &-link {
@@ -177,18 +217,23 @@ body {
             border-top: 0px;
             border-left: 0px;
             border-bottom: 0px;
-            border-bottom: 2px transparent solid;
             border-right: 0px;
+
             @include br(xs) {
-                font-size: 25px;
-                margin-top: 20px;
-                margin-bottom: 20px; 
+                margin-right: 0px;
+                margin: 15px;
+                padding: 30px;
+                padding-bottom: 15px;
             }
-    
+
             &:hover {
                 transform: scale(1.1);
                 transition: 0.2s ease-in-out;
                 border-bottom: 2px aqua solid;
+
+                @include br(xs) {
+                    border-bottom: 0px aqua solid;
+                }
             }
         }
 
@@ -196,8 +241,8 @@ body {
     }
 
     .openMobileMenu {
-        right: -15%;
-     }
+        right: 0%;
+    }
 
     #dropdownMenu {
         display: block;
@@ -209,10 +254,12 @@ body {
         top: 100%;
         background-color: black;
         transition: 0.5s ease;
+
         @include br(xs) {
             right: -150%;
             top: 40%;
         }
+
         a {
             text-decoration: none;
             color: white;
@@ -247,8 +294,13 @@ body {
 .open {
     right: 0% !important;
     transition: 0.5s ease;
+
     @include br(xs) {
-        right: 100%!important;
+        right: 95% !important;
+    }
+
+    @include br(xxxs) {
+        right: 97% !important;
     }
 }
 
@@ -258,6 +310,22 @@ body {
     background-color: rgb(9, 177, 140);
     border-bottom: 3px grey solid;
     padding-bottom: 150px;
+    animation: scroll 70s linear infinite;
+    background: url("https://images.unsplash.com/photo-1465146633011-14f8e0781093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=3450&q=80"), #111111;
+    color: #eee;
+    min-width: 360px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+
+    @include br(xs) {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
     &_wrapper {
         display: flex;
         justify-content: space-around;
@@ -266,7 +334,10 @@ body {
         width: 100%;
         padding-top: 80px;
         padding-bottom: 120px;
-
+        @include br(xl) {
+            padding-top: 40px;
+            padding-bottom: 0px;
+        }
         &-item {
             display: flex;
             flex-direction: column;
@@ -274,9 +345,16 @@ body {
             width: 300px;
             padding-top: 150px;
             transition: 0.3s ease-in-out;
-            &:hover {
-                animation: itemsAnimation 1s linear infinite ;
+
+            @include br(xs) {
+                padding-top: 50px;
             }
+
+            &:hover {
+                transform: scale(1.1);
+                transition: 0.3s ease;
+            }
+
             img {
                 height: 100px;
             }
@@ -295,6 +373,19 @@ body {
             height: 200px;
         }
     }
+
+}
+
+@keyframes scroll {
+    100% {
+        background-position: 0px -3000px;
+    }
+}
+
+@media (prefers-reduced-motion) {
+    .wrapper {
+        animation: scroll 200s linear infinite;
+    }
 }
 
 .asideMenu {
@@ -311,24 +402,29 @@ body {
     top: 50%;
     border: 4px rgba(0, 0, 0, 0.24) solid;
     transition: 0.7s ease;
+
     @include br(xs) {
         display: none;
     }
+
     #counter {
         opacity: 0;
     }
+
     #firstStep {
-            display: block;
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            padding-bottom: 10px;
-        }
+        display: block;
+        color: white;
+        text-align: center;
+        font-size: 20px;
+        padding-bottom: 10px;
+    }
+
     &_wrapper {
         display: block;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
         &-text {
             display: block;
             color: white;
@@ -337,11 +433,13 @@ body {
             opacity: 0;
             transition: 0.7s ease;
             cursor: pointer;
+
             &:hover {
                 transform: scale(1.05);
                 transition: 0.3s ease;
             }
         }
+
         .openText {
             opacity: 1;
             font-size: 20px;
@@ -354,12 +452,13 @@ body {
 
 
 .projects {
-    width: 100%;
-    height: 100vh;
-    background-color: rgb(4, 197, 133);
-    padding-top: 100px;
+    max-width: 100%;
+    height: 100%;
     padding-bottom: 80px;
     border-bottom: 3px grey solid;
+    position: relative;
+    z-index: 2;
+    animation: projectsBackground 5s linear infinite;
     &_title {
         text-align: center;
         padding-top: 20px;
@@ -373,6 +472,10 @@ body {
         justify-content: space-evenly;
         align-items: center;
 
+        @include br(xs) {
+            flex-direction: column;
+        }
+
         a {
             display: block;
             text-decoration: none;
@@ -384,10 +487,16 @@ body {
             align-items: center;
             justify-content: center;
             transition: 0.3s ease;
-            cursor: pointer;  
-            animation: logoAnimation 5s linear infinite ;
+            cursor: pointer;
+            animation: projectsAnimation 5s linear  infinite;
+            transition: 5s ease;
             img {
                 height: 170px;
+
+                @include br(xxxs) {
+                    flex-direction: column;
+                    width: 200px;
+                }
             }
 
             &--title {
@@ -410,13 +519,37 @@ body {
         width: 70%;
         margin: 0 auto;
         font-size: 25px;
+
+        @include br(xs) {
+            font-size: 23px;
+            text-align: center;
+        }
+
+        @include br(xxxs) {
+            font-size: 20px;
+        }
     }
 }
 
 .custom {
-    background-color: aqua;
     padding-top: 40px;
     padding-bottom: 40px;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(13, 16, 24);
+    position: relative;
+    overflow: hidden;
+    &_span {
+        position: absolute;
+        z-index: 1;
+        width: 180%;
+        height: 3px;
+        background-color: white;
+        animation: sliderSpan 10s ease-in-out infinite;
+        
+    }
     .slider {
         width: 300px;
         margin: 0 auto;
@@ -424,66 +557,122 @@ body {
         flex-direction: column;
         align-items: center;
         overflow: hidden;
+        position: relative;
+        z-index: 1;
         &_wrapper {
             display: flex;
             position: relative;
             left: 600px;
             transition: all 0.4s ease;
         }
-        &-buttons_wrapper{
+
+        &-buttons_wrapper {
             padding-top: 20px;
             padding-bottom: 20px;
             display: flex;
+           
             button {
                 display: block;
                 width: 80px;
                 background-color: transparent;
                 margin: 2px;
+                color: white;
                 padding: 3px;
                 text-transform: uppercase;
                 position: relative;
                 z-index: 111;
+                border: 2px aqua solid;
+                border-radius: 4px;
+                animation: buttonsBorders 10s ease-in-out infinite;
             }
         }
     }
-    
+
 
 }
 
 
 .feedback {
     width: 100%;
-    background-color: bisque;
-    height: 100vh;
-    padding-top: 20px;
+    background-color: black;
+    height: 70vh;
     border-bottom: 3px grey solid;
+    position: relative;
+    z-index: 2;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     &_title {
         text-align: center;
         padding-bottom: 40px;
-        padding-top: 20px;
     }
-
     &_wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
-
-        textarea {
-            width: 350px;
+        &-text {
+            text-align: center;
+            font-size: 25px;
         }
-
-        button {
-            display: block;
-            width: 100px;
-            margin-top: 20px;
-            padding: 10px;
+        &-button {
+            margin-top: 40px;
+            width: 200px;
+            background: transparent;
+            border: white 2px solid;
+            padding-top: 10px;
+            padding-bottom: 10px;
             font-size: 20px;
-            color: black;
-            font-weight: bold;
-            border: 2px aqua solid;
-            background-color: rgb(236, 234, 234);
-            cursor: pointer;
+            color: white;
+            position: relative;
+            #firstSpan {
+                transition: 0.3s ease;
+            }
+            .hideFirstSpan {
+                opacity: 0;
+                transition: 0.3s ease;
+            }
+            #secondSpan {
+                display: none;
+                position: absolute;
+                left: -30%;
+                transition: 0.3s ease;
+            }
+            .openSecondSpan {
+                display: block !important;
+                right: 15%;
+                transition: 0.3s ease;
+            }
+            
         }
+        &-contacts {
+            margin-top: 30px;
+            display: flex;
+            transform: perspective(400px) rotatex(90deg);
+            transition: 0.7s ease;
+            &--link {
+                margin: 5px;
+                display: block;
+                text-decoration: none;
+                color: white;
+                background-color: black;
+                padding: 7px;
+                border-radius: 2px;
+                border: 1px white solid;
+                transition: 0.3s ease;
+                &:hover {
+                   transform: scale(1.2);
+                   transition: 0.3s ease;
+                   
+                }
+            }
+
+        }
+    }
+    .openFeedbackContacts {
+        transform: perspective(400px) rotatex(0deg);
+        transition: 0.7s ease;
     }
 }
 
@@ -491,43 +680,79 @@ body {
 
 // ANIMARIONS 
 
-@keyframes logoAnimation {
-    0% {
-        transform: perspective(400px) rotateY(0deg);
-    }
-    100% {
-        transform: perspective(400px) rotateY(360deg);
-    } 
-}
-
 @keyframes headerAnimation {
     0% {
         padding-left: 250px;
         padding-right: 250px;
         opacity: 0;
     }
+
     50% {
         padding-left: 20px;
         padding-right: 20px;
         opacity: 0.5;
     }
+
     100% {
         opacity: 1;
         padding-left: 30px;
         padding-right: 30px;
         justify-content: space-between;
     }
-    
+
 }
 
-@keyframes itemsAnimation {
-    0%  {
-       transform: scale(1);
+@keyframes projectsAnimation {
+    0% {
+        transform: perspective(400px) rotateY(70deg) ;
+    }
+    25% {
+        transform: perspective(400px) rotateY(0deg)
     }
     50% {
-        transform: scale(1.2);
+        transform: perspective(400px) rotateY(-70deg);
     }
     100% {
-        transform: scale(1);
-    } 
+        transform: perspective(400px)rotateY(70deg) ;
+    }
+}
+
+
+@keyframes projectsBackground {
+    0% {
+        background-color: black;
+    }
+    50% {
+        background-color: rgb(31, 31, 31);
+    }
+    100% {
+        background-color: black;
+    }
+}
+
+@keyframes sliderSpan {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+        height: 100vh;
+        background-color: aqua;
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes buttonsBorders {
+    0% {
+        border: 2px aqua solid;
+    }
+    50%{
+        border: 2px black solid;
+        color: black;
+    }
+    100% {
+        border: 2px aqua solid;
+    }
 }

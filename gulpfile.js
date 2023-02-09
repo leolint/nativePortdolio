@@ -1,5 +1,4 @@
 import gulp from 'gulp';
-import sass from 'gulp-sass';
 import sourcemaps from 'gulp-sourcemaps';
 import watch from 'gulp-watch';
 import pngquant from 'imagemin-pngquant';
@@ -9,6 +8,11 @@ import cssnano from 'gulp-cssnano';
 import rename from 'gulp-rename';
 import concatCss from 'gulp-concat-css';
 import del from 'del';
+import gulpSass from 'gulp-sass'
+import sass from 'sass'
+
+const sassModule = gulpSass(sass)
+
 
 
 const PATH = {
@@ -38,7 +42,7 @@ gulp.task('watch', function () {
 
 gulp.task('scss', function () {
     return gulp.src(PATH.dev.scss)
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sassModule().on('error', sassModule.logError))
         .pipe(cssnano())
         .pipe(rename({ suffix: '.min' }))
         .pipe(gulp.dest(PATH.dev.css))
