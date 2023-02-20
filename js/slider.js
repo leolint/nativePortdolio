@@ -3,13 +3,19 @@ const images = document.querySelectorAll('.slider_wrapper img');
 const sliderLine = document.getElementById('slider_wrapper');
 const nextButton = document.getElementById('slider-next');
 const prevButton = document.getElementById('slider-prev');
-const item = document.getElementById('item');
+const item = document.getElementsByClassName('slider_wrapper-item');
 
 
-let width = item.offsetWidth * images.length;
-let itemWidth = item.offsetWidth;
+
+
+let width = item[0].offsetWidth * images.length;
+let oneItemWidth = item[1].offsetWidth
+
+
 
 let count = 0;
+
+
 
 nextButton.onclick = function () {
     ++count
@@ -27,7 +33,7 @@ prevButton.onclick = function () {
 }
 
 function roll () {
-    sliderLine.style.transform = 'translate(-'+ count * itemWidth +'px)';
+    sliderLine.style.transform = 'translate(-'+ count * oneItemWidth +'px)';
 }
 
 

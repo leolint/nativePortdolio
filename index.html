@@ -23,7 +23,8 @@
                     <ul>
                         <li><a onclick="closeMenu()" target="_blank"
                                 href="https://www.linkedin.com/in/leonid-chernyshov/">LinkedIn</a></li>
-                        <li><a onclick="closeMenu()" target="_blank" href="https://www.work.ua/resumes/7262655/">WorkUa</a></li>
+                        <li><a onclick="closeMenu()" target="_blank"
+                                href="https://www.work.ua/resumes/7262655/">WorkUa</a></li>
                         <li><a onclick="closeMenu()" target="_blank" href="https://t.me/LeoLint">Telegram</a></li>
                     </ul>
                 </div>
@@ -113,11 +114,11 @@
             <div id="slider" class="slider">
                 <p id="count"></p>
                 <div id="slider_wrapper" class="slider_wrapper">
-                    <img id="item" src="./img/gulp.png" alt="">
-                    <img id="item" src="./img/git.png" alt="">
-                    <img id="item" src="./img/gulp.png" alt="">
-                    <img id="item" src="./img/git.png" alt="">
-                    <img id="item" src="./img/gulp.png" alt="">
+                    <img class="slider_wrapper-item" src="./img/gulp.png" alt="">
+                    <img class="slider_wrapper-item" src="./img/git.png" alt="">
+                    <img class="slider_wrapper-item" src="./img/gulp.png" alt="">
+                    <img class="slider_wrapper-item" src="./img/git.png" alt="">
+                    <img class="slider_wrapper-item" src="./img/gulp.png" alt="">
 
                 </div>
                 <div class="slider-buttons_wrapper">
@@ -132,18 +133,21 @@
         <div class="container">
             <div id="feedback_wrapper" class="feedback_wrapper">
                 <div class="feedback_wrapper-text">
-                    If you prefer my portfolio you can send a message <br> to my LinkedIn , WorkUa <br> or Telegram 
+                    If you prefer my portfolio you can send a message <br> to my LinkedIn , WorkUa <br> or Telegram
                 </div>
-                <button id="feedbackButton" class="feedback_wrapper-button"><span id="secondSpan">Close</span> <span id="firstSpan">Show</span>  Contacts</button>
+                <button id="feedbackButton" class="feedback_wrapper-button"><span id="secondSpan">Close</span> <span
+                        id="firstSpan">Show</span> Contacts</button>
                 <div id="feedbackContactsWrapper" class="feedback_wrapper-contacts">
                     <a class="feedback_wrapper-contacts--link" href="https://www.work.ua/resumes/7262655/">WorkUa</a>
-                    <a class="feedback_wrapper-contacts--link" href="https://www.linkedin.com/in/leonid-chernyshov/">LinkedIn</a>
+                    <a class="feedback_wrapper-contacts--link"
+                        href="https://www.linkedin.com/in/leonid-chernyshov/">LinkedIn</a>
                     <a class="feedback_wrapper-contacts--link" href="">Telegram</a>
                 </div>
             </div>
-            </div>
         </div>
+        <ul class="posts"></ul>
     </section>
+    <script src="./js/request.js"></script>
     <script src="./js/feedbackButton.js"></script>
     <script src="./js/dropDownMenu.js"></script>
     <script src="./js/scrolls.js"></script>
